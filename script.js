@@ -82,7 +82,9 @@ function renderMenu(){
       <div class="iinfo">
         <div class="iname">${escHtml(item.name)}</div>
         <div class="sizes">${Object.entries(item.sizes).map(([sz,pr])=>
-          `<button class="sz" onclick="addItem('${escAttr(item.name)}','${escAttr(sz)}',${pr},this)">${escHtml(sz)} ₱${pr}</button>`
+          `<button class="sz" onclick="addItem('${escAttr(item.name)}','${escAttr(sz)}',${pr},this)">
+            <span class="sz-label">${escHtml(sz)}</span><span class="sz-price">₱${pr}</span>
+          </button>`
         ).join('')}</div>
       </div>
     </div>`).join('');
