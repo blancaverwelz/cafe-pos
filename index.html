@@ -5,190 +5,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cafe POS</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-<style>
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:#1a1a18;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;font-family:system-ui,-apple-system,sans-serif;}
-  .app{display:grid;grid-template-columns:1fr 290px;min-height:620px;width:100%;max-width:900px;border-radius:12px;overflow:hidden;border:1px solid #2C2C2A;}
-  .left{display:flex;flex-direction:column;overflow:hidden;background:#fff;}
-  .topbar{background:#2C2C2A;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;}
-  .brand{font-size:13px;font-weight:500;color:#D3D1C7;letter-spacing:0.06em;text-transform:uppercase;}
-  .brand span{color:#EF9F27;}
-  .cats{display:flex;gap:6px;padding:12px 14px;background:#f5f5f3;border-bottom:1px solid #e8e8e5;flex-wrap:wrap;}
-  .cat{padding:5px 12px;border-radius:20px;border:1px solid #ddd;background:transparent;color:#666;font-size:11px;font-weight:500;cursor:pointer;letter-spacing:0.03em;transition:all 0.12s;}
-  .cat.on{background:#2C2C2A;color:#EF9F27;border-color:#2C2C2A;}
-  .menu{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px;}
-  .icard{background:#fff;border:1px solid #eee;border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;transition:border-color 0.12s;}
-  .icard:hover{border-color:#BA7517;}
-  .iicon{width:36px;height:36px;border-radius:8px;background:#FAEEDA;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-  .iinfo{flex:1;}
-  .iname{font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:5px;}
-  .sizes{display:flex;gap:5px;flex-wrap:wrap;}
-  .sz{padding:3px 9px;border-radius:20px;border:1px solid #ddd;background:#f5f5f3;color:#666;font-size:11px;cursor:pointer;transition:all 0.12s;white-space:nowrap;}
-  .sz:hover{background:#2C2C2A;color:#EF9F27;border-color:#2C2C2A;}
-  .right{background:#2C2C2A;display:flex;flex-direction:column;padding:16px;}
-  .ohd{font-size:12px;font-weight:500;color:#888780;letter-spacing:0.07em;text-transform:uppercase;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;}
-  .clr{font-size:11px;color:#5F5E5A;background:none;border:none;cursor:pointer;}
-  .clr:hover{color:#888780;}
-  .olist{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:2px;}
-  .orow{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:8px;background:#444441;}
-  .oname{flex:1;font-size:12px;color:#D3D1C7;line-height:1.35;}
-  .osize{font-size:10px;color:#888780;display:block;margin-top:1px;}
-  .qc{display:flex;align-items:center;gap:5px;}
-  .qb{width:20px;height:20px;border-radius:6px;border:1px solid #5F5E5A;background:#2C2C2A;color:#B4B2A9;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.1s;}
-  .qb:hover{background:#EF9F27;color:#2C2C2A;border-color:#EF9F27;}
-  .qn{font-size:12px;font-weight:500;min-width:14px;text-align:center;color:#D3D1C7;}
-  .op{font-size:12px;color:#888780;min-width:48px;text-align:right;}
-  .empty{text-align:center;color:#5F5E5A;font-size:12px;padding:2rem 0;line-height:1.8;}
-  .div{height:1px;background:#444441;margin:14px 0;}
-  .srow{display:flex;justify-content:space-between;font-size:12px;color:#888780;margin-bottom:6px;}
-  .trow{display:flex;justify-content:space-between;font-size:16px;font-weight:500;color:#D3D1C7;}
-  .pay{margin-top:14px;background:#EF9F27;color:#2C2C2A;border:none;border-radius:8px;padding:12px;font-size:13px;font-weight:500;cursor:pointer;width:100%;transition:opacity 0.15s;}
-  .pay:hover{opacity:0.88;}
-  .pay:disabled{opacity:0.25;cursor:default;}
-  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#EF9F27;color:#2C2C2A;padding:9px 18px;border-radius:8px;font-size:12px;font-weight:500;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;}
-  .toast.show{opacity:1;}
-  ::-webkit-scrollbar{width:3px;}
-  ::-webkit-scrollbar-thumb{background:#444441;border-radius:3px;}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="app">
+<div class="app" id="appRoot">
   <div class="left">
     <div class="topbar">
-      <span class="brand"><i class="ti ti-coffee" style="font-size:14px;vertical-align:-1px;margin-right:6px;color:#EF9F27"></i>Cafe <span>POS</span></span>
-      <span style="font-size:11px;color:#5F5E5A;">v1.0</span>
+      <span class="brand"><i class="ti ti-coffee" aria-hidden="true"></i>Cafe <span>POS</span></span>
+      <span class="orderNo" id="orderNo">Next OR-000001</span>
+    </div>
+    <div class="searchRow">
+      <i class="ti ti-search" aria-hidden="true"></i>
+      <input id="search" type="text" placeholder="Search this category" oninput="onSearch(this.value)" aria-label="Search items in this category">
     </div>
     <div class="cats" id="cats"></div>
     <div class="menu" id="menu"></div>
   </div>
+
+  <button class="sheetHandle" onclick="toggleOrderPanel()" aria-label="Toggle order panel">
+    <span class="sheetSummary" id="sheetSummary">No items yet</span>
+    <i class="ti ti-chevron-up" aria-hidden="true"></i>
+  </button>
+
   <div class="right">
     <div class="ohd">Current order <button class="clr" onclick="clearAll()">Clear all</button></div>
-    <div class="olist" id="olist">
-      <div class="empty"><i class="ti ti-basket" style="font-size:28px;display:block;margin-bottom:8px;color:#444441"></i>No items yet.<br>Tap a size to add.</div>
-    </div>
-    <div>
+    <div class="olist" id="olist"></div>
+
+    <div class="orderFoot">
+      <div class="discRow">
+        <select id="discountType" onchange="setDiscountType(this.value)" aria-label="Discount type">
+          <option value="percent">% off</option>
+          <option value="amount">₱ off</option>
+        </select>
+        <input id="discountValue" type="number" min="0" step="1" value="0" oninput="setDiscountValue(this.value)" aria-label="Discount value" placeholder="0">
+      </div>
+
       <div class="div"></div>
       <div class="srow"><span>Subtotal</span><span id="sub">₱0.00</span></div>
+      <div class="srow" id="discRow" style="display:none"><span>Discount</span><span id="disc">−₱0.00</span></div>
       <div class="srow"><span>Tax (12%)</span><span id="tax">₱0.00</span></div>
       <div class="trow"><span>Total</span><span id="tot">₱0.00</span></div>
-      <button class="pay" id="pay" onclick="checkout()" disabled>
-        <i class="ti ti-credit-card" style="font-size:14px;vertical-align:-2px;margin-right:6px"></i>Charge customer
+
+      <div class="payMethods">
+        <button class="pm on" id="payCash" onclick="setPaymentMethod('cash')"><i class="ti ti-cash" aria-hidden="true"></i>Cash</button>
+        <button class="pm" id="payCard" onclick="setPaymentMethod('card')"><i class="ti ti-credit-card" aria-hidden="true"></i>Card</button>
+      </div>
+
+      <div class="cashPanel" id="cashPanel">
+        <div class="cashRow">
+          <label for="cashInput">Cash tendered</label>
+          <input id="cashInput" type="number" min="0" step="1" placeholder="0" oninput="updateCash(this.value)" aria-label="Cash tendered amount">
+        </div>
+        <div class="srow" id="changeRow"><span>Change</span><span id="changeOut">₱0.00</span></div>
+      </div>
+
+      <button class="pay" id="pay" onclick="openPreview()" disabled>
+        <i class="ti ti-receipt" aria-hidden="true"></i>Review &amp; charge
       </button>
     </div>
   </div>
 </div>
-<div class="toast" id="toast"></div>
 
-<script>
-const icons={"Black Coffee":"☕","Espresso":"⚡","Matcha":"🍵","Milk Based":"🥛","Pasta":"🍝","Sandwich":"🥪","Pastries":"🥐"};
-const menu={
-  "Black Coffee":[
-    {name:"Plain Black",sizes:{"Hot 12oz":55,"Iced 16oz":60,"Iced 500ml":100,"Concentrate 1L":190}},
-    {name:"Vietnamese",sizes:{"Hot 12oz":65,"Iced 16oz":70,"Iced 500ml":110,"Concentrate 1L":210}},
-    {name:"Classic",sizes:{"Hot 12oz":75,"Iced 16oz":90,"Iced 500ml":130,"Concentrate 1L":230}},
-    {name:"Caramel",sizes:{"Hot 12oz":85,"Iced 16oz":100,"Iced 500ml":140,"Concentrate 1L":240}},
-    {name:"Vanilla",sizes:{"Hot 12oz":85,"Iced 16oz":100,"Iced 500ml":140,"Concentrate 1L":240}},
-    {name:"Hazelnut",sizes:{"Hot 12oz":85,"Iced 16oz":100,"Iced 500ml":140,"Concentrate 1L":240}},
-  ],
-  "Espresso":[
-    {name:"Americano",sizes:{"Hot 12oz":100,"Iced 16oz":110,"Iced 500ml":150,"Concentrate 1L":430}},
-    {name:"Cafe Latte",sizes:{"Hot 12oz":120,"Iced 16oz":130,"Iced 500ml":170,"Concentrate 1L":460}},
-    {name:"Spanish Latte",sizes:{"Hot 12oz":120,"Iced 16oz":130,"Iced 500ml":170,"Concentrate 1L":460}},
-    {name:"Caramel Macchiato",sizes:{"Hot 12oz":120,"Iced 16oz":130,"Iced 500ml":170,"Concentrate 1L":460}},
-    {name:"Salted Caramel Latte",sizes:{"Hot 12oz":120,"Iced 16oz":130,"Iced 500ml":170,"Concentrate 1L":460}},
-    {name:"Butterscotch Latte",sizes:{"Hot 12oz":120,"Iced 16oz":130,"Iced 500ml":170,"Concentrate 1L":460}},
-    {name:"Cafe Mocha",sizes:{"Hot 12oz":120,"Iced 16oz":130,"Iced 500ml":170,"Concentrate 1L":460}},
-    {name:"White Choco Mocha",sizes:{"Hot 12oz":120,"Iced 16oz":130,"Iced 500ml":170,"Concentrate 1L":460}},
-  ],
-  "Matcha":[
-    {name:"Matcha Latte",sizes:{"Hot 12oz":100,"Iced 16oz":110,"Iced 500ml":150}},
-    {name:"Matcha Espresso",sizes:{"Hot 12oz":110,"Iced 16oz":120,"Iced 500ml":160}},
-    {name:"Matcha Strawberry",sizes:{"Hot 12oz":120,"Iced 16oz":130,"Iced 500ml":170}},
-  ],
-  "Milk Based":[{name:"Iced Milky Choco",sizes:{"16oz":120}}],
-  "Pasta":[
-    {name:"Tuna Carbonara",sizes:{"Regular":155}},
-    {name:"Beef Mac and Cheese",sizes:{"Regular":155}},
-  ],
-  "Sandwich":[
-    {name:"Tuna with Lettuce",sizes:{"Regular":90}},
-    {name:"Chicken Ham & Cheese",sizes:{"Regular":90}},
-    {name:"Baked Spaghetti",sizes:{"Regular":155}},
-    {name:"Tuna Melt",sizes:{"Regular":100}},
-    {name:"Chicken Ham & Egg",sizes:{"Regular":100}},
-  ],
-  "Pastries":[
-    {name:"Classic Butter Croissant",sizes:{"Each":100}},
-    {name:"Blueberry Cheesecake",sizes:{"Slice":140}},
-  ]
-};
+<div class="overlay" id="overlay">
+  <div class="preview">
+    <div class="prevHd">Receipt preview <button class="iconbtn" aria-label="Close preview" onclick="closePreview()"><i class="ti ti-x" aria-hidden="true"></i></button></div>
+    <div class="prevLines" id="prevLines"></div>
+    <div class="div"></div>
+    <div class="srow"><span>Subtotal</span><span id="prevSub">₱0.00</span></div>
+    <div class="srow" id="prevDiscRow" style="display:none"><span>Discount</span><span id="prevDisc">−₱0.00</span></div>
+    <div class="srow"><span>Tax (12%)</span><span id="prevTax">₱0.00</span></div>
+    <div class="trow"><span>Total</span><span id="prevTot">₱0.00</span></div>
+    <div class="div"></div>
+    <div class="srow"><span>Payment method</span><span id="prevMethod">Cash</span></div>
+    <div class="srow" id="prevCashRow"><span>Tendered</span><span id="prevTendered">₱0.00</span></div>
+    <div class="srow" id="prevChangeRow"><span>Change</span><span id="prevChange">₱0.00</span></div>
+    <div class="prevActions">
+      <button class="ghostBtn" onclick="closePreview()">Back</button>
+      <button class="pay" id="confirmCharge" onclick="confirmCharge()"><i class="ti ti-check" aria-hidden="true"></i>Confirm charge</button>
+    </div>
+  </div>
+</div>
 
-let order=[],activeCat="Black Coffee";
+<div class="toast" id="toast" aria-live="polite"></div>
 
-function renderCats(){
-  document.getElementById("cats").innerHTML=Object.keys(menu).map(c=>
-    `<button class="cat${c===activeCat?" on":""}" onclick="switchCat('${c}')">${icons[c]||""} ${c}</button>`
-  ).join("");
-}
-function switchCat(c){activeCat=c;renderCats();renderMenu();}
-function renderMenu(){
-  document.getElementById("menu").innerHTML=menu[activeCat].map(item=>`
-    <div class="icard">
-      <div class="iicon">${icons[activeCat]||"☕"}</div>
-      <div class="iinfo">
-        <div class="iname">${item.name}</div>
-        <div class="sizes">${Object.entries(item.sizes).map(([sz,pr])=>
-          `<button class="sz" onclick="addItem('${item.name.replace(/'/g,"\\'")}','${sz}',${pr})">${sz} ₱${pr}</button>`
-        ).join("")}</div>
-      </div>
-    </div>`).join("");
-}
-function addItem(name,size,price){
-  const key=name+"|"+size;
-  const ex=order.find(o=>o.key===key);
-  if(ex)ex.qty++;else order.push({key,name,size,price,qty:1});
-  renderOrder();
-}
-function changeQty(key,d){
-  const i=order.findIndex(o=>o.key===key);
-  order[i].qty+=d;
-  if(order[i].qty<=0)order.splice(i,1);
-  renderOrder();
-}
-function clearAll(){order=[];renderOrder();}
-function renderOrder(){
-  const el=document.getElementById("olist");
-  if(!order.length){
-    el.innerHTML='<div class="empty"><i class="ti ti-basket" style="font-size:28px;display:block;margin-bottom:8px;color:#444441"></i>No items yet.<br>Tap a size to add.</div>';
-  } else {
-    el.innerHTML=order.map(o=>`
-      <div class="orow">
-        <div class="oname">${o.name}<span class="osize">${o.size}</span></div>
-        <div class="qc">
-          <button class="qb" onclick="changeQty('${o.key}',-1)">−</button>
-          <span class="qn">${o.qty}</span>
-          <button class="qb" onclick="changeQty('${o.key}',1)">+</button>
-        </div>
-        <span class="op">₱${(o.price*o.qty).toFixed(2)}</span>
-      </div>`).join("");
-  }
-  const sub=order.reduce((s,o)=>s+o.price*o.qty,0);
-  const tax=sub*0.12;
-  document.getElementById("sub").textContent="₱"+sub.toFixed(2);
-  document.getElementById("tax").textContent="₱"+tax.toFixed(2);
-  document.getElementById("tot").textContent="₱"+(sub+tax).toFixed(2);
-  document.getElementById("pay").disabled=!order.length;
-}
-function checkout(){
-  const tot=(order.reduce((s,o)=>s+o.price*o.qty,0)*1.12).toFixed(2);
-  const t=document.getElementById("toast");
-  t.textContent="✓ Charged ₱"+tot+" — order complete!";
-  t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"),2500);
-  order=[];renderOrder();
-}
-renderCats();renderMenu();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
