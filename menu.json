@@ -1,0 +1,73 @@
+{
+  "categories": [
+    {
+      "name": "Black Coffee",
+      "icon": "ti-coffee",
+      "items": [
+        { "name": "Plain Black", "sizes": { "Hot 12oz": 55, "Iced 16oz": 60, "Iced 500ml": 100, "Concentrate 1L": 190 } },
+        { "name": "Vietnamese", "sizes": { "Hot 12oz": 65, "Iced 16oz": 70, "Iced 500ml": 110, "Concentrate 1L": 210 } },
+        { "name": "Classic", "sizes": { "Hot 12oz": 75, "Iced 16oz": 90, "Iced 500ml": 130, "Concentrate 1L": 230 } },
+        { "name": "Caramel", "sizes": { "Hot 12oz": 85, "Iced 16oz": 100, "Iced 500ml": 140, "Concentrate 1L": 240 } },
+        { "name": "Vanilla", "sizes": { "Hot 12oz": 85, "Iced 16oz": 100, "Iced 500ml": 140, "Concentrate 1L": 240 } },
+        { "name": "Hazelnut", "sizes": { "Hot 12oz": 85, "Iced 16oz": 100, "Iced 500ml": 140, "Concentrate 1L": 240 } }
+      ]
+    },
+    {
+      "name": "Espresso",
+      "icon": "ti-cup",
+      "items": [
+        { "name": "Americano", "sizes": { "Hot 12oz": 100, "Iced 16oz": 110, "Iced 500ml": 150, "Concentrate 1L": 430 } },
+        { "name": "Cafe Latte", "sizes": { "Hot 12oz": 120, "Iced 16oz": 130, "Iced 500ml": 170, "Concentrate 1L": 460 } },
+        { "name": "Spanish Latte", "sizes": { "Hot 12oz": 120, "Iced 16oz": 130, "Iced 500ml": 170, "Concentrate 1L": 460 } },
+        { "name": "Caramel Macchiato", "sizes": { "Hot 12oz": 120, "Iced 16oz": 130, "Iced 500ml": 170, "Concentrate 1L": 460 } },
+        { "name": "Salted Caramel Latte", "sizes": { "Hot 12oz": 120, "Iced 16oz": 130, "Iced 500ml": 170, "Concentrate 1L": 460 } },
+        { "name": "Butterscotch Latte", "sizes": { "Hot 12oz": 120, "Iced 16oz": 130, "Iced 500ml": 170, "Concentrate 1L": 460 } },
+        { "name": "Cafe Mocha", "sizes": { "Hot 12oz": 120, "Iced 16oz": 130, "Iced 500ml": 170, "Concentrate 1L": 460 } },
+        { "name": "White Choco Mocha", "sizes": { "Hot 12oz": 120, "Iced 16oz": 130, "Iced 500ml": 170, "Concentrate 1L": 460 } }
+      ]
+    },
+    {
+      "name": "Matcha",
+      "icon": "ti-leaf",
+      "items": [
+        { "name": "Matcha Latte", "sizes": { "Hot 12oz": 100, "Iced 16oz": 110, "Iced 500ml": 150 } },
+        { "name": "Matcha Espresso", "sizes": { "Hot 12oz": 110, "Iced 16oz": 120, "Iced 500ml": 160 } },
+        { "name": "Matcha Strawberry", "sizes": { "Hot 12oz": 120, "Iced 16oz": 130, "Iced 500ml": 170 } }
+      ]
+    },
+    {
+      "name": "Milk Based",
+      "icon": "ti-milk",
+      "items": [
+        { "name": "Iced Milky Choco", "sizes": { "16oz": 120 } }
+      ]
+    },
+    {
+      "name": "Pasta",
+      "icon": "ti-soup",
+      "items": [
+        { "name": "Tuna Carbonara", "sizes": { "Regular": 155 } },
+        { "name": "Beef Mac and Cheese", "sizes": { "Regular": 155 } }
+      ]
+    },
+    {
+      "name": "Sandwich",
+      "icon": "ti-sandwich",
+      "items": [
+        { "name": "Tuna with Lettuce", "sizes": { "Regular": 90 } },
+        { "name": "Chicken Ham & Cheese", "sizes": { "Regular": 90 } },
+        { "name": "Baked Spaghetti", "sizes": { "Regular": 155 } },
+        { "name": "Tuna Melt", "sizes": { "Regular": 100 } },
+        { "name": "Chicken Ham & Egg", "sizes": { "Regular": 100 } }
+      ]
+    },
+    {
+      "name": "Pastries",
+      "icon": "ti-croissant",
+      "items": [
+        { "name": "Classic Butter Croissant", "sizes": { "Each": 100 } },
+        { "name": "Blueberry Cheesecake", "sizes": { "Slice": 140 } }
+      ]
+    }
+  ]
+}
